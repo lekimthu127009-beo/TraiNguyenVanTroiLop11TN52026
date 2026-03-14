@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trại Nguyễn Văn Trỗi - 11TN5</title>
+    <style>
+        /* 1. KHAI BÁO FONT CHỮ */
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('Bolero-esque Honora.otf') format('opentype');
+            font-display: swap;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-image: url('https://i.pinimg.com/736x/78/5d/63/785d63a546e654085c14dbe602ce8ca3.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; 
+            background-repeat: no-repeat;
+            color: #333; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+
+        .container { width: 85%; margin: auto; overflow: hidden; padding: 20px 0; }
+
+        /* --- HIỆU ỨNG ANIMATION --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-content { 
+            padding: 40px; 
+            background: rgba(255, 255, 255, 0.96); 
+            margin-top: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3); 
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        header { 
+            position: relative;
+            color: #fff; 
+            padding: 60px 20px; 
+            text-align: center; 
+            overflow: hidden;
+            max-width: 900px; 
+            margin: 30px auto; 
+            border-radius: 15px; 
+            border: #77aaff 2px solid;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://cdnmedia.baotintuc.vn/2014/10/15/10/16/Nguyen-Van-Troi.jpg');
+            background-size: cover;
+            background-position: center 20%;
+            filter: blur(4px) brightness(0.35);
+            z-index: -1;
+            transform: scale(1.1);
+        }
+
+        header h1 { 
+            margin: 0; 
+            padding-bottom: 5px; 
+            font-family: 'MyCustomFont', sans-serif !important; 
+            font-size: 3em; 
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9); 
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        header p { font-size: 1.2em; opacity: 0.9; margin: 15px 0 0 0; font-weight: 300; }
+
+        nav { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid #d32f2f; }
+        nav ul { padding: 15px 0; list-style: none; text-align: center; margin: 0; }
+        nav ul li { display: inline; padding: 0 15px; }
+        nav ul li a { color: #fff; text-decoration: none; text-transform: uppercase; font-size: 0.85em; font-weight: bold; transition: 0.3s; }
+        nav ul li a:hover { color: #77aaff; }
+
+        h2 { 
+            font-family: 'MyCustomFont', sans-serif !important; 
+            color: #d32f2f; 
+            font-size: 2.5em;
+            border-bottom: 2px solid #77aaff; 
+            padding-bottom: 10px; 
+            margin-bottom: 25px; 
+        }
+
+        h3 { color: #1976d2; margin-top: 25px; border-left: 5px solid #1976d2; padding-left: 15px; font-size: 1.5em; }
+
+        /* BỐ CỤC LỊCH SỬ KẾT HỢP */
+        .history-layout {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+        .history-text { flex: 1; }
+        
+        .history-featured-img { 
+            flex: 0 0 380px; 
+            position: sticky; 
+            top: 100px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .history-featured-img img {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+            transition: 0.4s;
+        }
+        .history-featured-img img:hover { transform: scale(1.02); }
+        .img-caption { 
+            text-align: center; 
+            font-size: 0.9em; 
+            font-style: italic; 
+            margin: 10px 0 20px 0; 
+            color: #444; 
+            line-height: 1.4;
+        }
+
+        .quote-box {
+            background: #fff5f5;
+            border-left: 6px solid #d32f2f;
+            padding: 25px;
+            margin: 30px 0;
+            font-style: italic;
+            font-weight: bold;
+            color: #b71c1c;
+            font-size: 1.3em;
+            line-height: 1.6;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .image-gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 30px; }
+        .image-gallery figure { margin: 0; text-align: center; width: calc(33.33% - 20px); min-width: 250px; }
+        .image-gallery img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; box-shadow: 0 6px 12px rgba(0,0,0,0.2); transition: 0.4s; cursor: pointer; }
+        .image-gallery img:hover { transform: scale(1.05); filter: brightness(1.1); }
+        .image-gallery figcaption { font-size: 0.95em; color: #555; margin-top: 10px; font-style: italic; }
+
+        .purpose-list { list-style-type: none; padding-left: 0; }
+        .purpose-list li { margin-bottom: 15px; padding-left: 30px; position: relative; font-size: 1.1em; }
+        .purpose-list li::before { content: "✔"; position: absolute; left: 0; color: #d32f2f; font-weight: bold; }
+
+        .staff-list { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-top: 30px; }
+        .staff-group { background: #ffffff; padding: 30px; border-radius: 10px; border: 2px solid #f0f0f0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: 0.3s; }
+        .staff-group:hover { border-color: #77aaff; transform: translateY(-5px); }
+        .staff-group h4 { margin-top: 0; color: #d32f2f; border-bottom: 2px solid #77aaff; padding-bottom: 10px; font-size: 1.7em; margin-bottom: 20px; }
+        .staff-item { margin-bottom: 15px; font-size: 1.25em; line-height: 1.5; }
+        .staff-item b { color: #1976d2; }
+        .full-width { grid-column: span 2; }
+
+        .contact-info { margin-top: 40px; padding: 25px; background: #eef5ff; border-radius: 10px; text-align: center; font-size: 1.3em; font-weight: bold; }
+        
+        footer { text-align: center; padding: 40px; background: #1a1a1a; color: #fff; margin-top: 40px; border-top: #d32f2f 4px solid; }
+        
+        .history-detail { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #1976d2; margin-top: 15px; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .history-layout { flex-direction: column; }
+            .history-featured-img { flex: none; width: 100%; position: static; max-width: 500px; margin: 0 auto; }
+            .container { width: 92%; }
+        }
+        
+        @media (max-width: 600px) {
+            header h1 { font-size: 2em; }
+            .staff-list { grid-template-columns: 1fr; }
+            .staff-group { grid-column: span 1; }
+            nav ul li { display: block; padding: 10px 0; border-bottom: 1px solid #333; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>TRẠI: NGUYỄN VĂN TRỖI</h1>
+            <h1 style="color: #ffeb3b;">LỚP 11TN5</h1>
+            <p>Tự hào mang tên người anh hùng bất khuất - Sống như những đóa hoa</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container" style="padding: 0;">
+            <ul>
+                <li><a href="#intro">Giới Thiệu</a></li>
+                <li><a href="#info">Lịch Sử Anh Hùng</a></li>
+                <li><a href="#activities">Hoạt Động</a></li>
+                <li><a href="#meaning">Ý Nghĩa & Mục Đích</a></li>
+                <li><a href="#contact">Phụ trách</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- PHẦN GIỚI THIỆU -->
+        <section id="intro" class="main-content">
+            <h2>Lời Giới Thiệu</h2>
+            <p style="font-size: 1.15em;">Chào mừng các bạn đến với mái trại của lớp 11TN5. Với chủ đề hướng về cội nguồn và lòng biết ơn, chúng em chọn tên trại là <b>Nguyễn Văn Trỗi</b> – người con ưu tú của đất Quảng Nam, biểu tượng sáng ngời của chủ nghĩa anh hùng cách mạng Việt Nam. Trang web này là nơi lưu giữ những hình ảnh, cảm xúc và thông điệp mà tập thể lớp muốn gửi gắm qua hội trại lần này.</p>
+        </section>
+
+        <!-- PHẦN LỊCH SỬ KẾT HỢP -->
+        <section id="info" class="main-content">
+            <h2>Lịch Sử Anh Hùng Nguyễn Văn Trỗi</h2>
+            
+            <div class="history-layout">
+                <div class="history-text">
+                    <div class="history-detail">
+                        <h3>1. Xuất thân và Những năm tháng đầu đời</h3>
+                        <p>Anh Nguyễn Văn Trỗi sinh ngày 1/2/1940 tại làng Thanh Quýt, xã Điện Thắng, huyện Điện Bàn, Quảng Nam. Sinh ra trong một gia đình nghèo có truyền thống yêu nước, anh sớm vào Sài Gòn làm thợ điện ở nhà máy đèn Chợ Quán và tham gia tổ chức Biệt động thành Sài Gòn.</p>
+                        
+                        <h3>2. Chiến công và Sự kiện Cầu Công Lý</h3>
+                        <p>Năm 1964, anh Trỗi đã nhận nhiệm vụ đặt mìn tại <b>cầu Công Lý</b> (nay là cầu Nguyễn Văn Trỗi) để tiêu diệt phái đoàn quân sự cấp cao của Mỹ do Bộ trưởng Quốc phòng Robert McNamara cầm đầu.</p>
+                        <p>Tuy nhiên, kế hoạch không thành công do sự cố ngoài ý muốn. Anh bị địch bắt vào đêm 9/5/1964. Trong nhà lao, dù bị tra tấn dã man bằng mọi cực hình, anh vẫn giữ vững khí tiết, bảo vệ bí mật tổ chức đến cùng.</p>
+
+                        <h3>3. 9 Phút Cuối Cùng Tại Pháp Trường</h3>
+                        <p>Ngày 15/10/1964, anh bị đưa ra xử bắn tại nhà lao Chí Hòa. Trước họng súng kẻ thù, anh Trỗi không hề run sợ. Anh đã giật băng đen bịt mắt ra để nhìn thẳng quân thù và hô vang: <i>"Hãy nhớ lấy lời tôi! Đả đảo đế quốc Mỹ! Hồ Chí Minh muê muôn năm!"</i></p>
+                    </div>
+
+                    <div class="quote-box">
+                        "Có những phút làm nên lịch sử<br>
+                        Có cái chết hoá thành bất tử<br>
+                        Có những lời hơn mọi bài ca<br>
+                        Có con người từ chân lý sinh ra..."<br>
+                        <span style="font-size: 0.8em; font-weight: normal;">(Trích bài thơ "Hãy nhớ lấy lời tôi" - Tố Hữu)</span>
+                    </div>
+                </div>
+
+                <!-- KHỐI ẢNH NỔI BẬT BÊN PHẢI -->
+                <div class="history-featured-img">
+                    <img src="https://imgprofile.vnanet.vn/media/graphic/profile/2025/07/22/f1307d47-8c57-4864-b396-d9d8ae767fb4-1681315248.jpg" alt="Chân dung">
+                    <p class="img-caption">Chân dung người thợ điện anh hùng</p>
+
+                    <img src="https://vcdn1-vnexpress.vnecdn.net/2018/04/15/nguyenvantroitruoclucxuban-1523778380.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=Uji34JQ-8F3-p6EzseX2pg" alt="Anh Trỗi tại pháp trường">
+                    <p class="img-caption">Khoảnh khắc hiên ngang của Anh hùng Nguyễn Văn Trỗi tại pháp trường Chí Hòa (15/10/1964)</p>
+                    
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+                   
+                </div>
+            </div>
+        </section>
+
+        <!-- HOẠT ĐỘNG TRẠI -->
+        <section id="activities" class="main-content">
+            <h2>Hoạt Động Của Trại 11TN5</h2>
+            <div class="activity-item">
+                <h3>1. Thiết kế và Trang trí Trại</h3>
+                <p>Cổng trại được mô phỏng theo biểu tượng cầu Công Lý và ngọn lửa đấu tranh, sử dụng các vật liệu thân thiện môi trường để thể hiện sự sáng tạo của học sinh lớp 11TN5.</p>
+
+                <h3>2. Hoạt Động Giới Thiệu & Văn Nghệ</h3>
+                <p>Thuyết trình về tiểu sử anh hùng, kết hợp biểu diễn các bài hát cách mạng và giao lưu văn nghệ sôi nổi giữa các thành viên.</p>
+
+                <h3>3. Sinh Hoạt Tập Thể</h3>
+                <p>Tụ tập tại trại để chia sẻ kiến thức, cùng nhau chơi các trò chơi dân gian và thảo luận về các bài học lịch sử hào hùng của dân tộc.</p>
+            </div>
+
+            <div class="image-gallery">
+                <figure>
+                    <img src="file:///D:/Thuw/Code/NguyenVanTroi.zip/z7617855526085_905a4daa27785415034d28ab2af12dad.jpg">
+                    <figcaption>Tỉ mỉ từng chi tiết trang trí</figcaption>
+                </figure>
+                <figure>
+                    <img src="file:///D:/Thuw/Code/NguyenVanTroi.zip/z7617869921341_1d1a3a85d999a8623075167e27052992.jpg"Vui chơi">
+                    <figcaption>Cùng nhau hát hò vang dội</figcaption>
+                </figure>
+                <figure>
+                    <img src="file:///D:/Thuw/Code/NguyenVanTroi.zip/z7617961091331_4b86f62b9427e99d3316e068880b7d7a.jpg">
+                    <figcaption>Tự tin giới thiệu về trại lớp mình</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Ý NGHĨA -->
+        <section id="meaning" class="main-content">
+            <h2>Ý Nghĩa và Mục Đích</h2>
+            <h3>1. Ý Nghĩa Biểu Tượng</h3>
+            <ul class="purpose-list">
+                <li><b>Gìn giữ lịch sử:</b> Tên trại là lời nhắc nhở về một thế hệ thanh niên sẵn sàng hy sinh cho Tổ quốc.</li>
+                <li><b>Lan tỏa giá trị sống:</b> Từ hình ảnh anh Trỗi, chúng em muốn lan tỏa tinh thần trách nhiệm và lòng dũng cảm.</li>
+            </ul>
+
+            <h3>2. Mục Đích Hội Trại</h3>
+            <ul class="purpose-list">
+                <li><b>Kết nối 11TN5:</b> Xây dựng một tập thể đoàn kết, gắn bó và hiểu nhau hơn.</li>
+                <li><b>Phát huy tiềm năng:</b> Sân chơi để các bạn thể hiện năng khiếu nghệ thuật và kỹ năng mềm.</li>
+                <li><b>Giải tỏa áp lực:</b> Nạp lại năng lượng tích cực sau những kỳ thi căng thẳng.</li>
+            </ul>
+        </section>
+
+        <!-- PHỤ TRÁCH -->
+        <section id="contact" class="main-content">
+            <h2>Phụ trách & Liên Hệ</h2>
+            <div class="staff-list">
+                <div class="staff-group">
+                    <h4>Trưởng ban</h4>
+                    <div class="staff-item"><b>Nguyễn Thị Thanh Tâm:</b> Cố vấn giáo viên</div>
+                </div>
+                <div class="staff-group">
+                    <h4>Phó ban</h4>
+                    <div class="staff-item"><b>Khấu Hiếu Tâm:</b> Chỉ huy trưởng</div>
+                    <div class="staff-item"><b>Nguyễn Hoài Anh:</b> Chỉ huy phó</div>
+                    <div class="staff-item"><b>Trần Đình Trí:</b> Chỉ huy phó</div>
+                </div>
+                <div class="staff-group full-width">
+                    <h4>Thành viên phụ trách</h4>
+                    <div class="staff-item"><b>Nguyễn Thị Tuyết Hạnh:</b> Hậu cần & Tài chính</div>
+                    <div class="staff-item"><b>Nguyễn Minh Nhân:</b> Trang trí</div>
+                    <div class="staff-item"><b>Nguyễn Thị Cẩm Nhung:</b> Sinh hoạt trong trại</div>
+                    <div class="staff-item"><b>Lê Kim Thư:</b> In ấn biểu mẫu & Thiết kế</div>
+                </div>
+            </div>
+            <div class="contact-info">
+                Email trường: <a href="mailto:thptcheguevara@bentre.edu.vn" style="color: #1976d2;">thptcheguevara@bentre.edu.vn</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Lớp 11TN5 - Trại Nguyễn Văn Trỗi</p>
+            <p style="font-size: 0.8em; margin-top: 10px; opacity: 0.7;">Trường THPT Che Guevara - Bến Tre</p>
+        </div>
+    </footer>
+</body>
+</html>
